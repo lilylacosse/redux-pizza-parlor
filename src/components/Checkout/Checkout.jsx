@@ -16,12 +16,13 @@ function Checkout() {
         time,
         pizza: [{}, {}, {}]
     }
+
     function handleCheckout() {
 
         axios.post('/api/pizza',)
-            .then((response) =>
-        // insert GET from checkout here
-    ).catch((err) => console.log('Pizza POST error:', err))
+            .then((response) => {// insert GET from checkout here
+            }
+            ).catch((err) => console.log('Pizza POST error:', err))
     }
     return (<> <h2>Step 3: Checkout</h2>
         <div>{customerInfo.customer_name}</div>
