@@ -1,24 +1,30 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import { ChangeEvent } from 'react';
+import { useDispatch } from 'react-redux';
+
+import OrderForm from '../OrderForm/OrderForm';
+import Checkout from '../Checkout/Checkout';
 import SelectPizza from '../SelectPizza/SelectPizza';
 import SelectPizzaItem from '../SelectPizzaItem/SelectPizzaItem';
-import { useDispatch} from 'react-redux';
+
 
 
 function App() {
 
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
 
-useEffect(() => {
-  fetchPizzas();
-})
+  useEffect(() => {
+    fetchPizzas();
+  })
 
-//GET ROUTE
+  //GET ROUTE
   const fetchPizzas = () => {
     axios.get('/api/pizza')
       .then(response => {
-        dispatch({type: 'FETCH_PIZZA', payload: response.data})
+        dispatch({ type: 'FETCH_PIZZA', payload: response.data })
       })
       .catch(error => {
         console.log(error)
@@ -31,11 +37,20 @@ useEffect(() => {
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
       </header>
-  
-      <img src='images/pizza_photo.png' />
-      <p>Pizza is great.</p>
 
-      <SelectPizza fetchPizzas={fetchPizzas}/>
+      <Router>
+        <Route path="/" exact>
+          <SelectPizza fetchPizzas={fetchPizzas} />
+        </Route>
+        <Route path="/orderform">
+          <OrderForm />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
+        </Route>
+      </Router>
+
+
     </div>
   );
 }
