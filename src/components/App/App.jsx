@@ -4,6 +4,8 @@ import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 import OrderForm from '../OrderForm/OrderForm';
+import { ChangeEvent } from 'react';
+import Checkout from '../Checkout/Checkout';
 
 function App() {
 
@@ -17,9 +19,11 @@ function App() {
       <p>Pizza is great.</p>
 
       <Router>
-        {/* <Link to="/orderform">Next</Link> */}
         <Route path="/orderform">
           <OrderForm />
+        </Route>
+        <Route path="/checkout">
+          <Checkout />
         </Route>
       </Router>
     </div>
