@@ -4,6 +4,18 @@ import './App.css';
 
 function App() {
 
+//GET ROUTE
+  const fetchPizzas = () {
+    axios.get('/api/pizza')
+      .then(resposne => {
+        dispatchEvent({type: 'FETCH_PIZZA', payload: response.data})
+      })
+      .catch(error => {
+        console.log(error)
+        alert('Could not get pizzas')
+      })
+  }
+
   return (
     <div className='App'>
       <header className='App-header'>
