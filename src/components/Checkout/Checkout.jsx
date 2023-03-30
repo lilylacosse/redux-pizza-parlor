@@ -2,24 +2,24 @@ import axios from "axios"
 import { useSelector } from "react-redux";
 
 function Checkout() {
-    const customerInfo = useSelector((store) => store.customerInfo)
-    // const pizzaData = useSelector((store)=>store.?)
+    const customerInfo = useSelector((store) => store.customerInfo);
+    const fetchPizza = useSelector((store)=>store.fetchPizza);
+
+    console.log('in checkout', fetchPizza);
 
     //bundle up Redux state in a new VARIABLE  to send to server via Post 
     let allOrderInfo = {
-        customer_name,
-        street_address,
-        city,
-        zip,
-        type,
-        total,
-        time,
+        customer_name: customerInfo.customer_name,
+        street_address: customerInfo.street_address,
+        city: customerInfo.city,
+        zip:customerInfo.zip,
+        type: customerInfo.type,
         pizza: [{}, {}, {}]
     }
 
     function handleCheckout() {
 
-        axios.post('/api/pizza',)
+        axios.post('/api/order', )
             .then((response) => {// insert GET from checkout here
             }
             ).catch((err) => console.log('Pizza POST error:', err))
@@ -30,15 +30,19 @@ function Checkout() {
         <div>{customerInfo.city}</div>
 
         <table>
-            <thead><th>Pizza Type</th><th>Cost</th> </thead>
-            <tbody>{pizzaData.map((pizza, i) => (
+            <thead>
+                <tr>
+                <th>Pizza Type</th><th>Cost</th>
+                </tr>
+                </thead>
+            <tbody>{fetchPizza.map((pizza, i) => (
                 <tr key={i}>
-                    <td>{pizza.id}</td>
+                    <td>{pizza.name}</td>
                     <td>{pizza.price}</td>
                 </tr>))}
             </tbody>
         </table>
-        <div>total:{total}</div>
+        {/* <div>total:{total}</div> */}
 
         <button onClick={handleCheckout}>Checkout</button>
     </>)

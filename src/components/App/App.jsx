@@ -11,7 +11,6 @@ import SelectPizza from '../SelectPizza/SelectPizza';
 import SelectPizzaItem from '../SelectPizzaItem/SelectPizzaItem';
 
 
-
 function App() {
 
   const dispatch = useDispatch();
