@@ -1,9 +1,11 @@
 import axios from "axios"
 import { useSelector } from "react-redux";
 
+
 function Checkout() {
     const customerInfo = useSelector((store) => store.customerInfo);
     const fetchPizza = useSelector((store)=>store.fetchPizza);
+    //need const for the pizza info picked by customer
 
     console.log('in checkout', fetchPizza);
 
@@ -14,13 +16,15 @@ function Checkout() {
         city: customerInfo.city,
         zip:customerInfo.zip,
         type: customerInfo.type,
-        pizza: [{}, {}, {}]
+        //pizza: [{}, {}, {}]
     }
 
     function handleCheckout() {
 
-        axios.post('/api/order', )
-            .then((response) => {// insert GET from checkout here
+        axios.post('/api/order', allOrderInfo)
+            .then((response) => {
+                //GET from GET in admin
+                console.log('in POST', response);
             }
             ).catch((err) => console.log('Pizza POST error:', err))
     }
