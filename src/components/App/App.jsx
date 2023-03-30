@@ -1,14 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
+import SelectPizza from '../SelectPizza/SelectPizza';
+import SelectPizzaItem from '../SelectPizzaItem/SelectPizzaItem';
+import { useDispatch} from 'react-redux';
+
 
 function App() {
 
+  const dispatch= useDispatch();
+
+useEffect(() => {
+  fetchPizzas();
+})
+
 //GET ROUTE
-  const fetchPizzas = () {
+  const fetchPizzas = () => {
     axios.get('/api/pizza')
-      .then(resposne => {
-        dispatchEvent({type: 'FETCH_PIZZA', payload: response.data})
+      .then(response => {
+        dispatch({type: 'FETCH_PIZZA', payload: response.data})
       })
       .catch(error => {
         console.log(error)
@@ -24,7 +34,8 @@ function App() {
   
       <img src='images/pizza_photo.png' />
       <p>Pizza is great.</p>
-  
+
+      <SelectPizza fetchPizzas={fetchPizzas}/>
     </div>
   );
 }
