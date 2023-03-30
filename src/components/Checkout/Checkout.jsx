@@ -19,7 +19,7 @@ function Checkout() {
 
     function handleCheckout() {
 
-        axios.post('/api/pizza',)
+        axios.post('/api/order',)
             .then((response) => {// insert GET from checkout here
             }
             ).catch((err) => console.log('Pizza POST error:', err))

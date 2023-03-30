@@ -14,6 +14,18 @@ const fetchPizza = (state = [], action) => {
   return state;
 };
 
+const addPizza = (state = [], action) => {
+    if (action.type === 'ADD_PIZZA') {
+        return action.payload;
+    }
+    else if (action.type === 'REMOVE_PIZZA') {
+        return true;
+    }
+    return state;
+};
+
+
+ 
 const customerInfo = (state = {}, action) => {
   if (action.type === "SAVE_CUST_INFO") {
     return action.payload;
@@ -28,6 +40,7 @@ const storeInstance = createStore(
   combineReducers({
     fetchPizza,
     customerInfo,
+    addPizza
   }),
   applyMiddleware(logger)
 );
