@@ -20,9 +20,11 @@ function SelectPizza() {
             <h2>Select Your Pizza</h2>
         </div>
         <div>
-            <button onClick={handleCustomerInfo}>Next</button>
 
-            <AllPizzas/>
+        <AllPizzas/>
+         <button onClick={handleCustomerInfo}>Next</button>
+
+           
         </div>
         </>
     )

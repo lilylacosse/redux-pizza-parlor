@@ -6,8 +6,14 @@ function SelectPizzaItem({pizza}) {
 
     return (
     <div className='pizzaItemBox'>
-        {pizza.image_path}
-        {pizza.name}: {pizza.description} {pizza.price} 
+        <img src={pizza.image_path}/>
+        <br/>
+        {pizza.name}: 
+        <br/>
+        {pizza.description} 
+        <br/>
+        {pizza.price} 
+        <br/>
         <button onClick={addPizza}>Add</button>
     </div>
     )
