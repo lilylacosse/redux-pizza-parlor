@@ -20,7 +20,7 @@ function Checkout() {
     }
 
     function handleCheckout() {
-
+    
         axios.post('/api/order', allOrderInfo)
             .then((response) => {
                 //GET from GET in admin
