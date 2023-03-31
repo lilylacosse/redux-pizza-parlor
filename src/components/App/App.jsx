@@ -8,7 +8,8 @@ import { useDispatch } from 'react-redux';
 import OrderForm from '../OrderForm/OrderForm';
 import Checkout from '../Checkout/Checkout';
 import SelectPizza from '../SelectPizza/SelectPizza';
-// import SelectPizzaItem from '../SelectPizzaItem/SelectPizzaItem';
+import SelectPizzaItem from '../SelectPizzaItem/SelectPizzaItem';
+import Admin from '../Admin/Admin'; 
 
 
 function App() {
@@ -70,6 +71,9 @@ function App() {
         </Route>
         <Route path="/checkout">
           <Checkout />
+        </Route>
+        <Route path="/admin">
+          <Admin />
         </Route>
       </Router>
 

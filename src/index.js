@@ -24,10 +24,6 @@ const addPizza = (state = [], action) => {
     return state;
 };
 
-
-
-
- 
 const customerInfo = (state = {}, action) => {
   if (action.type === "SAVE_CUST_INFO") {
     return action.payload;
@@ -37,12 +33,23 @@ const customerInfo = (state = {}, action) => {
   return state;
 };
 
+const placedOrders =(state= [], action) => {
+  if(action.type === 'ALL_DATA') {
+    console.log('in reducer', action.payload);
+    return action.payload
+  }
+  return state;
+}
+
+
+
 //STORE
 const storeInstance = createStore(
   combineReducers({
     fetchPizza,
     customerInfo,
-    addPizza
+    addPizza,
+    placedOrders,
   }),
   applyMiddleware(logger)
 );
