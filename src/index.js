@@ -14,6 +14,16 @@ const fetchPizza = (state = [], action) => {
   return state;
 };
 
+const addPizza = (state = [], action) => {
+    if (action.type === 'ADD_PIZZA') {
+        return action.payload;
+    }
+    else if (action.type === 'REMOVE_PIZZA') {
+        return true;
+    }
+    return state;
+};
+
 const customerInfo = (state = {}, action) => {
   if (action.type === "SAVE_CUST_INFO") {
     return action.payload;
@@ -23,7 +33,13 @@ const customerInfo = (state = {}, action) => {
   return state;
 };
 
-//'ALL_DATA' Reducer
+const placedOrders =(state= [], action) => {
+  if(action.type === 'ALL_DATA') {
+    console.log('in reducer', action.payload);
+    return action.payload
+  }
+  return state;
+}
 
 
 
@@ -32,6 +48,8 @@ const storeInstance = createStore(
   combineReducers({
     fetchPizza,
     customerInfo,
+    addPizza,
+    placedOrders,
   }),
   applyMiddleware(logger)
 );

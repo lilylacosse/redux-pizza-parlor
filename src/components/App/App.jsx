@@ -36,6 +36,7 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
+        <h2>Total: </h2>
       </header>
 
       <Router>
