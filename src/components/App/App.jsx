@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './App.css';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
@@ -14,10 +14,13 @@ import Admin from '../Admin/Admin';
 
 function App() {
 
+  const [sum, setSum] = useState(0); 
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchPizzas();
+    orderTotal()
   })
 
   //GET ROUTE
@@ -32,11 +35,31 @@ function App() {
       })
   }
 
+  //GET ROUTE for getting order total
+  const orderTotal = () => {
+    axios.get('/api/order')
+    .then(response => {
+      const data = response.data;
+      console.log(response.data)
+      let total = 0;
+      for (let item of data) {
+        console.log(item.price)
+        total += item.price 
+        setSum(total)
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      alert('Could not get order total')
+    })
+  }
+
+
   return (
     <div className='App'>
       <header className='App-header'>
         <h1 className='App-title'>Prime Pizza</h1>
-        <h2>Total: </h2>
+        <h2>Total: ${sum.toFixed(2)}</h2>
       </header>
 
       <Router>
