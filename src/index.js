@@ -23,6 +23,10 @@ const customerInfo = (state = {}, action) => {
   return state;
 };
 
+//'ALL_DATA' Reducer
+
+
+
 //STORE
 const storeInstance = createStore(
   combineReducers({

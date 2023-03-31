@@ -4,12 +4,11 @@ import { useSelector } from "react-redux";
 
 function Checkout() {
     const customerInfo = useSelector((store) => store.customerInfo);
-    const fetchPizza = useSelector((store)=>store.fetchPizza);
+    const fetchPizza = useSelector((store)=>store.fetchPizza); //use the new one in map() below
     //need const for the pizza info picked by customer
 
     console.log('in checkout', fetchPizza);
 
-    //bundle up Redux state in a new VARIABLE  to send to server via Post 
     let allOrderInfo = {
         customer_name: customerInfo.customer_name,
         street_address: customerInfo.street_address,
@@ -19,15 +18,29 @@ function Checkout() {
         //pizza: [{}, {}, {}]
     }
 
+    function getAdmin(){
+        axios.get('/api/pizza/admin')
+        .then ((result) => {
+            dispatch({
+                type: 'ALL_DATA',
+                payload: result.data
+            })
+        }).catch((err) => {
+            alert('GET in Admin', err);
+        })
+    }
+
     function handleCheckout() {
 
-        axios.post('/api/order', allOrderInfo)
+    axios.post('/api/order', allOrderInfo)
             .then((response) => {
-                //GET from GET in admin
+                getAdmin();
                 console.log('in POST', response);
             }
             ).catch((err) => console.log('Pizza POST error:', err))
     }
+
+
     return (<> <h2>Step 3: Checkout</h2>
         <div>{customerInfo.customer_name}</div>
         <div>{customerInfo.street_address}</div>
